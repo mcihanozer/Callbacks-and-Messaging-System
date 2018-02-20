@@ -21,7 +21,7 @@ SmileyScheduler::~SmileyScheduler()
 
 void SmileyScheduler::clear()
 {
-    for(std::set<SmileyTelegram*>::iterator it = mPriorityQueue.begin(); it != mPriorityQueue.end(); )
+    for(auto it = mPriorityQueue.begin(); it != mPriorityQueue.end(); )
     {
         (*it)->erase();
         mPriorityQueue.erase(it++);
@@ -65,7 +65,7 @@ void SmileyScheduler::removeTelegramFromQueue()
 		// instead of iterating through every frame.
 		// DOWN-SIDE: You need to add callOnFrame() to the telegrams or still 
 		// iterate through them for callOnFrame()
-        for(std::set<SmileyTelegram*>::iterator it = mPriorityQueue.begin(); it != mPriorityQueue.end(); )
+        for(auto it = mPriorityQueue.begin(); it != mPriorityQueue.end(); ) //it++ )
         {
             if( !( (*it)->isStillValid() ) )
             {
@@ -87,7 +87,7 @@ void SmileyScheduler::checkTelegramList(const float pDeltaTime)
     {
         // TODO handle this better ifpossible. Maybe event-driven again? 
 		// The part/problem I was talking above
-        for(std::set<SmileyTelegram*>::iterator it = mPriorityQueue.begin(); it != mPriorityQueue.end(); it++ )
+        for(auto it = mPriorityQueue.begin(); it != mPriorityQueue.end(); it++ )
         {
             (*it)->callOnFrame(pDeltaTime);
         }
